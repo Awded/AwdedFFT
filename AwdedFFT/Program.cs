@@ -98,7 +98,7 @@ namespace AudedFFT {
     }
     private void Init(FftSize fftSize) {
       //open the default device 
-      _soundIn = new WasapiLoopbackCapture();
+      _soundIn = new WasapiLoopbackCapture(34);
       //Our loopback capture opens the default render device by default so the following is not needed
       //_soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
       _soundIn.Initialize();

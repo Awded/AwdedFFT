@@ -29,14 +29,16 @@ namespace AudedFFT {
     private String outString = "";
    static void Main(string[] args) {
       int timerMs = 32;
+      int fftLatency = 32;
       int i = 0;
 
       Program program = new Program();
 
-      if(args.Length == 2) {
+      if(args.Length == 3) {
         int intFftSize = 0;
         Int32.TryParse(args[0], out timerMs);
         Int32.TryParse(args[1], out intFftSize);
+        Int32.TryParse(args[1], out fftLatency);
         Console.WriteLine(intFftSize);
         fftSize = (FftSize)intFftSize;
       }
@@ -45,7 +47,7 @@ namespace AudedFFT {
       program._rightFFTBuffer = new float[(int)fftSize];
       program._stereoFFTBuffer = new float[(int)fftSize / 2];
 
-      program.Init(fftSize);
+      program.Init(fftSize, fftLatency);
       Console.WriteLine("Starting Timer");
       while(program.timer) {
         Thread.Sleep(timerMs);
@@ -96,9 +98,9 @@ namespace AudedFFT {
 
 
     }
-    private void Init(FftSize fftSize) {
+    private void Init(FftSize fftSize, int fftLatency) {
       //open the default device 
-      _soundIn = new WasapiLoopbackCapture(34);
+      _soundIn = new WasapiLoopbackCapture(fftLatency);
       //Our loopback capture opens the default render device by default so the following is not needed
       //_soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
       _soundIn.Initialize();

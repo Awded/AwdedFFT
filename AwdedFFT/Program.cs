@@ -38,8 +38,7 @@ namespace AudedFFT {
         int intFftSize = 0;
         Int32.TryParse(args[0], out timerMs);
         Int32.TryParse(args[1], out intFftSize);
-        Int32.TryParse(args[1], out fftLatency);
-        Console.WriteLine(intFftSize);
+        Int32.TryParse(args[2], out fftLatency);
         fftSize = (FftSize)intFftSize;
       }
 
@@ -48,7 +47,6 @@ namespace AudedFFT {
       program._stereoFFTBuffer = new float[(int)fftSize / 2];
 
       program.Init(fftSize, fftLatency);
-      Console.WriteLine("Starting Timer");
       while(program.timer) {
         Thread.Sleep(timerMs);
         if(program.spectrumProvider.GetFftData(program._leftFFTBuffer, program._rightFFTBuffer, 1)) {

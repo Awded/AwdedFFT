@@ -51,13 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonoFFT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StereoFFT.cs" />
-    <Compile Include="Visualization\BasicSpectrumProvider.cs" />
-    <Compile Include="Visualization\ISpectrumProvider.cs" />
-    <Compile Include="Visualization\ScalingStrategy.cs" />
-    <Compile Include="Visualization\SpectrumBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

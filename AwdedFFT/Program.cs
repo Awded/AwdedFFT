@@ -58,7 +58,7 @@ namespace AudedFFT {
                     }
                     program.outString = "[";
                     for(i = 0; i < program._stereoFFTBuffer.Length; i++) {
-                        program.outString += (20 * (float)Math.Log10(program._stereoFFTBuffer[i])).ToString("0.000");
+                        program.outString += (20 * (float)Math.Log10(program._stereoFFTBuffer[i])).ToString("0.000").Replace("∞", "200");
                         if(program._stereoFFTBuffer.Length != i + 1)
                             program.outString += ",";
                     }
